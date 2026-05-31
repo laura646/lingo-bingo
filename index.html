@@ -319,7 +319,7 @@
     </details>
     <details>
       <summary>How do I pay? <span class="plus">+</span></summary>
-      <div class="ans">Just click any "Buy ticket" button and pay online in a few seconds. Early birds pay only 2000 AMD.</div>
+      <div class="ans" id="faq-pay">Just click any "Buy ticket" button and pay online in a few seconds. Early birds pay only 2000 AMD.</div>
     </details>
     <details>
       <summary>What languages can I practice? <span class="plus">+</span></summary>
@@ -382,16 +382,35 @@
 
 <script>
   /* ---------------------------------------------------------
-     REPLACE_ME: put your Paylink.am checkout link here.
-     All "Buy" buttons across the page use it automatically.
+     TICKET PRICING — automatic early-bird → regular switch.
+     Before the cutoff: early-bird link + 2000 AMD pricing.
+     At/after the cutoff: regular link + 3000 AMD pricing.
+     Cutoff: 2026-06-08 23:59 (GMT+4).
+     Preview the post-cutoff state anytime by adding ?regular=1 to the URL.
      --------------------------------------------------------- */
-  var PAYLINK_URL = "https://payment.paylink.am/en/payment?id=TkIzZ2J4cGxzUGt3cmhkQ3hpMy9vbXFDSDFhQWNJeG4xamZWWUczZG4xRU1rem0wYlkwMWdGL2dLT2hkQ1JQSUJheUJDNk1WY01qU24wMUh6NGt0bkE9PQ";
+  var EARLY_URL   = "https://payment.paylink.am/en/payment?id=TkIzZ2J4cGxzUGt3cmhkQ3hpMy9vbXFDSDFhQWNJeG4xamZWWUczZG4xRU1rem0wYlkwMWdGL2dLT2hkQ1JQSUJheUJDNk1WY01qU24wMUh6NGt0bkE9PQ";
+  var REGULAR_URL = "https://payment.paylink.am?id=RzFKSllwZG44Sm1teks2MFNOZk9IdUs4NlhMVVJyaER4OXNsZ1doWG42S2V1d1d6dDJSQk5WNmtHMkhrL1NrWVZZUXVKYktkaWp6RGlObG11WUJjR2c9PQ";
+  var CUTOFF = Date.parse("2026-06-08T23:59:00+04:00");
 
+  var isRegular = (Date.now() >= CUTOFF) || (location.search.indexOf("regular=1") !== -1);
+
+  // Point every "Buy" button at the current checkout link
   document.querySelectorAll("[data-buy]").forEach(function(a){
-    a.setAttribute("href", PAYLINK_URL);
+    a.setAttribute("href", isRegular ? REGULAR_URL : EARLY_URL);
     a.setAttribute("target", "_blank");
     a.setAttribute("rel", "noopener");
   });
+
+  // After the cutoff, flip the pricing copy to regular (3000 AMD)
+  if (isRegular) {
+    var set = function(sel, html){ var el = document.querySelector(sel); if (el) el.innerHTML = html; };
+    set(".price", '<span class="price-new">3000 AMD</span>');
+    set(".price-cap", "Tickets");
+    set(".buybar .bp", 'Ticket<b>3000 AMD</b>');
+    set(".cta-band p", 'Grab your ticket for <b>3000 AMD</b> and we\'ll see you at Ilik Cafe!');
+    var pay = document.getElementById("faq-pay");
+    if (pay) pay.textContent = 'Just click any "Buy ticket" button and pay online in a few seconds. Tickets are 3000 AMD.';
+  }
 </script>
 </body>
 </html>
