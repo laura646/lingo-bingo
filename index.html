@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- =========================================================
+     LINGO BINGO — Yerevan's coolest language exchange night
+     Built for English with Laura.  Future home: lb.englishwithlaura.com
+
+     >>> 3 THINGS TO REPLACE (search for "REPLACE_ME") <<<
+       1. PAYLINK_URL  — your Paylink.am checkout link (in the <script> at the bottom)
+       2. VIDEO        — your YouTube video ID (in the "See the vibe" section)
+       3. assets/hero.jpg — save the bar photo here (the hero shows it automatically)
+     ========================================================= -->
+
+<title>Lingo Bingo — Yerevan's coolest language exchange night</title>
+<meta name="description" content="Lingo Bingo is Yerevan's friendly language exchange night. Wear a flag for every language you speak or want to learn, meet new people, and practice over a drink. Tuesday, June 9, 8:00 PM at Ilik Cafe. Early bird tickets 2000 AMD." />
+
+<!-- Social sharing (Instagram / WhatsApp / Facebook) -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Lingo Bingo — Yerevan's coolest language exchange night" />
+<meta property="og:description" content="Meet new people and practice languages over a drink. Tuesday, June 9, 8:00 PM at Ilik Cafe. Early bird 2000 AMD." />
+<meta property="og:image" content="assets/hero.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --cyan:#00AFF0;          /* English with Laura brand — ALL buttons/links/accents */
+    --cyan-dark:#0090c8;
+    --charcoal:#46464B;      /* text + structure */
+    --white:#ffffff;
+    --soft:#f6f8fa;          /* clean section tint */
+    --radius:16px;
+    --max:680px;             /* clean content width */
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"Lato",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    color:var(--charcoal);
+    background:var(--white);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:84px; /* room for sticky mobile buy bar */
+  }
+  img{max-width:100%;display:block;}
+  a{color:var(--cyan);text-decoration:none;}
+  h1,h2,h3{line-height:1.2;}
+
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px;}
+  .section{padding:54px 0;}
+  .section h2{font-size:30px;font-weight:900;color:var(--charcoal);margin:0 0 6px;text-align:center;}
+  .section .sub{text-align:center;color:#6b6b70;margin:0 auto 30px;max-width:520px;}
+
+  /* ---------- BUTTONS (English with Laura cyan) ---------- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    background:var(--cyan);color:#fff;font-weight:900;font-size:17px;
+    padding:15px 28px;border-radius:999px;border:0;cursor:pointer;
+    box-shadow:0 8px 20px rgba(0,175,240,.30);
+    transition:transform .12s ease, box-shadow .12s ease, background .12s ease;text-align:center;
+  }
+  .btn:hover{background:var(--cyan-dark);transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,175,240,.38);}
+  .btn-lg{font-size:18px;padding:17px 32px;}
+
+  /* shared little chips */
+  .chip{background:#fff;border:1px solid #d7eefb;color:var(--charcoal);font-weight:700;font-size:14px;
+    padding:10px 16px;border-radius:999px;box-shadow:0 2px 10px rgba(0,175,240,.08);}
+
+  /* =========================================================
+     HERO (clean, on-brand)
+     ========================================================= */
+  .hero{background:linear-gradient(180deg,#d6e8fb 0%,#eaf4fd 36%,#ffffff 64%);padding:42px 0 52px;text-align:center;}
+  .hero-inner{max-width:900px;margin:0 auto;padding:0 20px;}
+  .brand-logo{display:block;width:58px;height:58px;margin:0 auto 16px;}
+  .pill{display:inline-block;background:#ffffff;color:var(--cyan-dark);font-weight:900;font-size:13px;
+    padding:8px 16px;border-radius:999px;letter-spacing:.3px;box-shadow:0 2px 10px rgba(70,70,75,.08);}
+  .hero h1{font-size:clamp(48px,13vw,88px);font-weight:900;color:var(--charcoal);
+    margin:18px 0 12px;line-height:.97;letter-spacing:-1.5px;}
+  .tagline{font-size:clamp(17px,2.6vw,20px);color:#4a4a51;margin:0 auto 18px;max-width:560px;}
+  .flags-strip{font-size:22px;letter-spacing:5px;margin:0 0 26px;line-height:1;}
+  .hero-photo{max-width:100%;margin:0 auto 28px;border-radius:24px;overflow:hidden;
+    box-shadow:0 22px 50px rgba(70,70,75,.18);aspect-ratio:16/10;background:#dfe7ec;}
+  .hero-photo img{width:100%;height:100%;object-fit:cover;}
+  .hero-photo.no-img{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#eceff2,#f6f8fa);}
+  .hero-photo.no-img::after{content:"🏳️  📸  Save your photo as assets/hero.jpg";
+    font-weight:700;color:#9aa0a6;font-size:13px;text-align:center;padding:0 24px;}
+  .hero-facts{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:24px;}
+  /* non-clickable price display */
+  .price{display:flex;align-items:baseline;justify-content:center;gap:12px;margin:0 0 2px;}
+  .price-old{font-size:17px;font-weight:700;color:#9a9aa0;text-decoration:line-through;}
+  .price-new{font-size:27px;font-weight:900;color:var(--charcoal);line-height:1;}
+  .price-cap{font-size:13px;font-weight:900;color:var(--cyan-dark);letter-spacing:.6px;text-transform:uppercase;margin:0 0 20px;}
+  .hero-note{font-size:13px;color:#6b6b70;margin:14px 0 0;}
+  @media(min-width:760px){ .hero{padding:64px 0 76px;} .hero-photo{aspect-ratio:16/9;} }
+
+  /* ---------- VIDEO ---------- */
+  .phone{margin:0 auto;width:100%;max-width:320px;aspect-ratio:9/16;border-radius:26px;overflow:hidden;
+    background:#000;border:7px solid #1c1c1e;box-shadow:0 16px 40px rgba(0,0,0,.22);}
+  .phone iframe,.phone .video-ph{width:100%;height:100%;border:0;}
+  .video-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#fff;
+    background:linear-gradient(160deg,#2b2b30,#46464B);text-align:center;padding:20px;}
+  .video-ph .play{width:64px;height:64px;border-radius:50%;background:var(--cyan);display:flex;align-items:center;
+    justify-content:center;font-size:26px;box-shadow:0 8px 20px rgba(0,175,240,.4);}
+  .video-ph small{opacity:.8;}
+
+  /* ---------- STEPS ---------- */
+  .steps{display:grid;gap:16px;}
+  .step{display:flex;gap:16px;align-items:flex-start;background:var(--soft);border:1px solid #eceef1;border-radius:var(--radius);padding:18px;}
+  .step .ico{font-size:30px;line-height:1;flex:0 0 auto;}
+  .step h3{margin:0 0 3px;font-size:18px;color:var(--charcoal);}
+  .step p{margin:0;color:#5c5c63;font-size:15px;}
+  .step .num{font-weight:900;color:var(--charcoal);margin-right:6px;}
+
+  /* ---------- WHO ---------- */
+  .who{background:var(--soft);border-radius:var(--radius);padding:30px 24px;text-align:center;font-size:17px;color:#4a4a51;}
+  .who strong{color:var(--charcoal);}
+
+  /* ---------- DETAILS + MAP ---------- */
+  .card{border:1px solid #e7e9ec;border-radius:var(--radius);padding:8px 22px;box-shadow:0 6px 22px rgba(70,70,75,.06);}
+  .card .row{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px solid #eef0f3;}
+  .card .row:last-child{border-bottom:0;}
+  .card .row .ico{font-size:22px;flex:0 0 28px;}
+  .card .row .k{font-weight:900;color:var(--charcoal);display:block;font-size:13px;text-transform:uppercase;letter-spacing:.5px;}
+  .card .row .v{color:#4a4a51;}
+  .mapcard{display:flex;align-items:center;gap:16px;margin-top:18px;text-decoration:none;
+    background:linear-gradient(135deg,#e9f7fe,#f4fbff);border:1px solid #cfeefb;border-radius:var(--radius);
+    padding:18px 20px;transition:box-shadow .15s ease,transform .15s ease;}
+  .mapcard:hover{box-shadow:0 10px 26px rgba(0,175,240,.18);transform:translateY(-2px);}
+  .mapcard .pin{font-size:30px;flex:0 0 auto;}
+  .mapcard .mtext{display:flex;flex-direction:column;flex:1;min-width:0;}
+  .mapcard .mname{font-weight:900;color:var(--charcoal);font-size:18px;}
+  .mapcard .msub{color:#6b6b70;font-size:14px;}
+  .mapcard .mgo{color:var(--cyan);font-weight:900;font-size:15px;white-space:nowrap;}
+
+  /* ---------- ABOUT ---------- */
+  .about{background:var(--soft);border-radius:var(--radius);padding:32px 26px;text-align:center;font-size:17px;color:#4a4a51;}
+  .about p{margin:0 auto 22px;max-width:560px;}
+  .about p:last-child{margin-bottom:0;}
+  .about strong{color:var(--charcoal);}
+  .about-chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+
+  /* ---------- FAQ ---------- */
+  .faq details{border:1px solid #e7e9ec;border-radius:14px;margin-bottom:12px;overflow:hidden;background:#fff;}
+  .faq summary{list-style:none;cursor:pointer;padding:17px 20px;font-weight:700;color:var(--charcoal);
+    display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:16px;}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary .plus{color:var(--cyan);font-size:24px;font-weight:900;transition:transform .2s ease;flex:0 0 auto;}
+  .faq details[open] summary .plus{transform:rotate(45deg);}
+  .faq .ans{padding:0 20px 18px;color:#5c5c63;font-size:15.5px;}
+
+  /* ---------- FINAL CTA ---------- */
+  .cta-band{background:linear-gradient(135deg,var(--cyan),#33c2f5);color:#fff;text-align:center;border-radius:24px;padding:42px 24px;}
+  .cta-band h2{color:#fff;}
+  .cta-band p{margin:0 auto 22px;max-width:440px;font-size:17px;opacity:.95;}
+  .cta-band .btn{background:#fff;color:var(--cyan);box-shadow:0 10px 26px rgba(0,0,0,.18);}
+  .cta-band .btn:hover{background:#f0fbff;color:var(--cyan-dark);}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--charcoal);color:#d8d8db;text-align:center;padding:38px 20px 46px;margin-top:54px;}
+  footer .fbrand{font-family:"Lato",sans-serif;font-weight:900;font-size:22px;color:#fff;letter-spacing:1px;}
+  footer a{color:#9fe3fb;}
+  footer .flinks{margin:14px 0;display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:center;font-size:15px;}
+  footer .fine{font-size:12.5px;opacity:.6;margin-top:14px;}
+
+  /* ---------- STICKY MOBILE BUY BAR ---------- */
+  .buybar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:#fff;border-top:1px solid #e7e9ec;
+    box-shadow:0 -6px 20px rgba(0,0,0,.08);display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;}
+  .buybar .bp{font-size:13px;color:#6b6b70;line-height:1.2;}
+  .buybar .bp b{display:block;color:var(--charcoal);font-size:16px;}
+  .buybar .btn{padding:13px 22px;font-size:15px;}
+
+  @media(min-width:760px){
+    .steps{grid-template-columns:1fr 1fr;}
+    .buybar{display:none;}
+    body{padding-bottom:0;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== HERO ============== -->
+<header class="hero">
+  <div class="hero-inner">
+    <img class="brand-logo" src="assets/logo.svg" alt="English with Laura logo" />
+    <span class="pill">🌍 Language Exchange Night · Yerevan</span>
+    <h1>Lingo Bingo</h1>
+    <p class="tagline">One evening, lots of languages, and a room full of friendly faces. Pop on a flag for
+      each language you speak or want to learn — then let the conversations begin.</p>
+    <div class="flags-strip">🇦🇲 🇬🇧 🇫🇷 🇷🇺 🇪🇸 🇮🇹 🇩🇪 🇬🇪</div>
+
+    <!-- Save the bar photo as assets/hero.jpg and it appears here -->
+    <div class="hero-photo">
+      <img src="assets/hero.jpg" alt="Friends laughing at a bar, wearing language flags on their clothes"
+           onerror="this.style.display='none';this.parentElement.classList.add('no-img');" />
+    </div>
+
+    <div class="hero-facts">
+      <span class="chip">📅 Tue, June 9 · 8:00 PM</span>
+      <span class="chip">📍 Ilik Cafe</span>
+    </div>
+
+    <div class="price">
+      <span class="price-old">3000 AMD</span>
+      <span class="price-new">2000 AMD</span>
+    </div>
+    <div class="price-cap">Early bird tickets</div>
+
+    <a class="btn btn-lg" href="#" data-buy>🎟️ Buy ticket</a>
+    <p class="hero-note">Drinks not included</p>
+  </div>
+</header>
+
+<!-- ============== VIDEO ============== -->
+<section class="section" id="video">
+  <div class="wrap">
+    <h2>See the vibe 👀</h2>
+    <p class="sub">30 seconds is all it takes to get it.</p>
+    <div class="phone">
+      <iframe src="https://www.youtube.com/embed/Fp1cFVMJRMM" title="Lingo Bingo — Yerevan's Language Exchange Night"
+        loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ============== HOW IT WORKS ============== -->
+<section class="section">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <p class="sub">It's easy. Really.</p>
+    <div class="steps">
+      <div class="step"><div class="ico">🎫</div><div><h3><span class="num">1.</span>Show up</h3><p>Come to Ilik Cafe and check in at the door. That's the only hard part — and it's not hard at all!</p></div></div>
+      <div class="step"><div class="ico">🏳️</div><div><h3><span class="num">2.</span>Get your flags</h3><p>We'll give you a little flag for each language you can speak, and each one you'd like to get better at.</p></div></div>
+      <div class="step"><div class="ico">📌</div><div><h3><span class="num">3.</span>Wear them</h3><p>Pin your flags on, so people can see your languages at a glance — no need to explain.</p></div></div>
+      <div class="step"><div class="ico">💬</div><div><h3><span class="num">4.</span>Start chatting</h3><p>Order a drink, find someone with an interesting flag, and say hello. That's it — you're in!</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== WHO'S IT FOR ============== -->
+<section class="section">
+  <div class="wrap">
+    <h2>Who is it for?</h2>
+    <div class="who">
+      <strong>Everyone who loves languages — and everyone who'd like to. 🎉</strong> You don't have to be perfect
+      or fluent: complete beginners and confident speakers are equally welcome. Come on your own or bring a friend —
+      either way, you'll meet plenty of new people. No lessons, no pressure… just good chats and good company.
+    </div>
+  </div>
+</section>
+
+<!-- ============== DETAILS + MAP ============== -->
+<section class="section" id="details">
+  <div class="wrap">
+    <h2>The details</h2>
+    <div class="card">
+      <div class="row"><div class="ico">📅</div><div><span class="k">Date &amp; time</span><span class="v">Tuesday, June 9, 8:00 PM</span></div></div>
+      <div class="row"><div class="ico">📍</div><div><span class="k">Place</span><span class="v"><a href="https://maps.app.goo.gl/q8dmsUyPGPyaaAHPA" target="_blank" rel="noopener">Ilik Cafe, Yerevan</a></span></div></div>
+      <div class="row"><div class="ico">🎟️</div><div><span class="k">Price</span><span class="v">Early bird <b>2000 AMD</b> · Regular <b>3000 AMD</b></span></div></div>
+      <div class="row"><div class="ico">🥤</div><div><span class="k">Good to know</span><span class="v">Drinks are not included — you can buy your own at the bar.</span></div></div>
+    </div>
+    <a class="mapcard" href="https://maps.app.goo.gl/q8dmsUyPGPyaaAHPA" target="_blank" rel="noopener">
+      <span class="pin">📍</span>
+      <span class="mtext">
+        <span class="mname">Ilik Cafe</span>
+        <span class="msub">Yerevan, Armenia</span>
+      </span>
+      <span class="mgo">Get directions →</span>
+    </a>
+  </div>
+</section>
+
+<!-- ============== ABOUT US ============== -->
+<section class="section">
+  <div class="wrap">
+    <h2>About us</h2>
+    <div class="about">
+      <p>Lingo Bingo is brought to you by <strong>English with Laura</strong> — a language school that helps people
+      speak with real confidence. We believe you learn a language best by actually using it with other people, so we
+      created this night to bring language lovers in Yerevan together for a fun, relaxed evening.</p>
+      <div class="about-chips">
+        <span class="chip">🎓 All levels welcome</span>
+        <span class="chip">🗣️ Learn by speaking</span>
+        <span class="chip">💙 A friendly community</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FAQ ============== -->
+<section class="section">
+  <div class="wrap faq">
+    <h2>Questions?</h2>
+    <p class="sub">Everything you might want to know.</p>
+
+    <details open>
+      <summary>Do I need to speak English well? <span class="plus">+</span></summary>
+      <div class="ans">No! All levels are welcome, from total beginner to fluent. You can practice any language you like.</div>
+    </details>
+    <details>
+      <summary>Can I come alone? <span class="plus">+</span></summary>
+      <div class="ans">Yes — most people do! It's the perfect place to meet new friends, and the flags make it easy to start talking.</div>
+    </details>
+    <details>
+      <summary>Is a drink included? <span class="plus">+</span></summary>
+      <div class="ans">No, drinks are not included in the ticket. You can buy your favourite drink at the bar.</div>
+    </details>
+    <details>
+      <summary>How do I pay? <span class="plus">+</span></summary>
+      <div class="ans">Just click any "Buy ticket" button and pay online in a few seconds. Early birds pay only 2000 AMD.</div>
+    </details>
+    <details>
+      <summary>What languages can I practice? <span class="plus">+</span></summary>
+      <div class="ans">Any language you love! English, Armenian, Russian, French, Spanish and more — bring them all.</div>
+    </details>
+    <details>
+      <summary>What if I'm shy? <span class="plus">+</span></summary>
+      <div class="ans">Don't worry — the flags do the talking for you. Everyone is there to meet new people, so it's easy and friendly.</div>
+    </details>
+  </div>
+</section>
+
+<!-- ============== FINAL CTA ============== -->
+<section class="section">
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Ready to join us?</h2>
+      <p>Early birds save 1000 AMD. Book your spot now for just <b>2000 AMD</b> — see you at Ilik Cafe!</p>
+      <a class="btn" href="#" data-buy>🎟️ Buy ticket</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="fbrand">LINGO BINGO</div>
+  <div style="opacity:.8;margin-top:4px;">by English with Laura</div>
+  <div class="flinks">
+    <a href="tel:+37455554955">📞 +374 55 554955</a>
+    <a href="https://www.instagram.com/english.with.laura/" target="_blank" rel="noopener">📷 @english.with.laura</a>
+    <a href="https://englishwithlaura.com" target="_blank" rel="noopener">🌐 englishwithlaura.com</a>
+  </div>
+  <div class="fine">© 2026 English with Laura · Yerevan, Armenia</div>
+</footer>
+
+<!-- ============== STICKY MOBILE BUY BAR ============== -->
+<div class="buybar">
+  <div class="bp">Early bird<b>2000 AMD</b></div>
+  <a class="btn" href="#" data-buy>🎟️ Buy ticket</a>
+</div>
+
+<!-- ============== JSON-LD (SEO / sharing) ============== -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Event",
+  "name":"Lingo Bingo — Language Exchange Night",
+  "startDate":"2026-06-09T20:00:00+04:00",
+  "eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode",
+  "eventStatus":"https://schema.org/EventScheduled",
+  "location":{"@type":"Place","name":"Ilik Cafe","address":"Yerevan, Armenia"},
+  "description":"Yerevan's friendly language exchange night. Wear a flag for every language you speak or want to learn, meet new people, and practice over a drink.",
+  "organizer":{"@type":"Organization","name":"English with Laura","url":"https://englishwithlaura.com"},
+  "offers":[
+    {"@type":"Offer","name":"Early bird","price":"2000","priceCurrency":"AMD","availability":"https://schema.org/InStock"},
+    {"@type":"Offer","name":"Regular","price":"3000","priceCurrency":"AMD"}
+  ]
+}
+</script>
+
+<script>
+  /* ---------------------------------------------------------
+     REPLACE_ME: put your Paylink.am checkout link here.
+     All "Buy" buttons across the page use it automatically.
+     --------------------------------------------------------- */
+  var PAYLINK_URL = "https://payment.paylink.am/en/payment?id=TkIzZ2J4cGxzUGt3cmhkQ3hpMy9vbXFDSDFhQWNJeG4xamZWWUczZG4xRU1rem0wYlkwMWdGL2dLT2hkQ1JQSUJheUJDNk1WY01qU24wMUh6NGt0bkE9PQ";
+
+  document.querySelectorAll("[data-buy]").forEach(function(a){
+    a.setAttribute("href", PAYLINK_URL);
+    a.setAttribute("target", "_blank");
+    a.setAttribute("rel", "noopener");
+  });
+</script>
+</body>
+</html>
